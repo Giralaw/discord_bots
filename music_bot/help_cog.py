@@ -4,8 +4,12 @@ from discord.ext import commands
 class help_cog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        self.help_message = ""
+        self.text_channel_list = []
+        self.set_message()
 
-        self.help_message = """
+    def set_message(self):
+        self.help_message = f"""
 ```
 General commands:
 {self.bot.command_prefix}help - displays all the available commands
@@ -20,7 +24,6 @@ General commands:
 {self.bot.command_prefix}remove - removes last song from the queue
 ```
 """
-
 
     @commands.Cog.listener()
     async def on_ready(self):
