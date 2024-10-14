@@ -336,3 +336,4 @@ discord.ext.commands.errors.CommandInvokeError: Command raised an exception: Typ
 [2024-10-13 23:39:08] [INFO    ] discord.voice_state: Voice handshake complete. Endpoint found: newark3500.discord.media
 [2024-10-13 23:39:08] [INFO    ] discord.voice_state: Voice connection complete.
 [2024-10-13 23:51:31] [INFO    ] discord.player: ffmpeg process 41096 successfully terminated with return code of 0.
+[2024-10-13 23:57:18] [INFO    ] discord.player: ffmpeg process 35360 successfully terminated with return code of 0.
