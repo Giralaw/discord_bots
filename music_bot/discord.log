@@ -6,3 +6,333 @@
 [2024-10-13 17:45:54] [INFO    ] discord.voice_state: Voice connection complete.
 [2024-10-13 17:46:24] [ERROR   ] discord.ext.commands.bot: Ignoring exception in command None
 discord.ext.commands.errors.CommandNotFound: Command "quee" is not found
+[2024-10-13 18:49:45] [ERROR   ] discord.voice_state: Disconnected from voice... Reconnecting in 1.23s.
+Traceback (most recent call last):
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\aiohttp\client_ws.py", line 315, in receive
+    msg = await self._reader.read()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\aiohttp\streams.py", line 684, in read
+    return await super().read()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\aiohttp\streams.py", line 643, in read
+    await self._waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\voice_state.py", line 598, in _poll_voice_ws
+    await self.ws.poll_event()
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\gateway.py", line 1029, in poll_event
+    msg = await asyncio.wait_for(self.ws.receive(), timeout=30.0)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py", line 519, in wait_for
+    async with timeouts.timeout(timeout):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\asyncio\timeouts.py", line 115, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+[2024-10-13 18:49:45] [ERROR   ] discord.client: Attempting a reconnect in 0.69s
+Traceback (most recent call last):
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\aiohttp\connector.py", line 1317, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\aiohttp\connector.py", line 971, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\aiohttp\connector.py", line 1002, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\aiohttp\resolver.py", line 38, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 901, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\socket.py", line 976, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\client.py", line 664, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\gateway.py", line 374, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\http.py", line 550, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\aiohttp\client.py", line 937, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\aiohttp\client.py", line 663, in _request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\aiohttp\connector.py", line 563, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\aiohttp\connector.py", line 1032, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\aiohttp\connector.py", line 1323, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gateway-us-east1-b.discord.gg:443 ssl:default [getaddrinfo failed]
+[2024-10-13 18:49:45] [WARNING ] discord.gateway: Shard ID None has stopped responding to the gateway. Closing and restarting.
+[2024-10-13 18:49:46] [INFO    ] discord.voice_state: The voice handshake is being terminated for Channel ID 1247415798826532935 (Guild ID 1074419036626096168)
+[2024-10-13 18:49:46] [INFO    ] discord.voice_state: Connecting to voice...
+[2024-10-13 18:49:46] [INFO    ] discord.voice_state: Starting voice handshake... (connection attempt 1)
+[2024-10-13 18:49:47] [INFO    ] discord.gateway: Shard ID None session has been invalidated.
+[2024-10-13 18:49:53] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 48509361cf2a8f1e75a8e70b03850198).
+[2024-10-13 18:50:16] [INFO    ] discord.player: ffmpeg process 20232 has not terminated. Waiting to terminate...
+[2024-10-13 18:50:16] [INFO    ] discord.player: ffmpeg process 20232 should have terminated with a return code of 1.
+[2024-10-13 18:50:19] [INFO    ] discord.player: ffmpeg process 39664 has not terminated. Waiting to terminate...
+[2024-10-13 18:50:19] [INFO    ] discord.player: ffmpeg process 39664 should have terminated with a return code of 1.
+[2024-10-13 22:48:10] [INFO    ] discord.gateway: Shard ID None session has been invalidated.
+[2024-10-13 22:48:17] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 86da480950903246a3fa31614aa5ea7d).
+[2024-10-13 22:48:58] [INFO    ] discord.client: logging in using static token
+[2024-10-13 22:49:00] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 7e9efbaa968097a65d97fbc1922f7193).
+[2024-10-13 22:51:01] [INFO    ] discord.voice_state: Connecting to voice...
+[2024-10-13 22:51:01] [INFO    ] discord.voice_state: Starting voice handshake... (connection attempt 1)
+[2024-10-13 22:51:01] [INFO    ] discord.voice_state: Voice handshake complete. Endpoint found: newark3500.discord.media
+[2024-10-13 22:51:01] [INFO    ] discord.voice_state: Voice connection complete.
+[2024-10-13 22:55:08] [INFO    ] discord.player: ffmpeg process 34852 has not terminated. Waiting to terminate...
+[2024-10-13 22:55:08] [INFO    ] discord.player: ffmpeg process 34852 should have terminated with a return code of 1.
+[2024-10-13 22:55:11] [INFO    ] discord.player: ffmpeg process 39136 has not terminated. Waiting to terminate...
+[2024-10-13 22:55:11] [INFO    ] discord.player: ffmpeg process 39136 should have terminated with a return code of 1.
+[2024-10-13 22:55:32] [INFO    ] discord.player: ffmpeg process 38072 has not terminated. Waiting to terminate...
+[2024-10-13 22:55:32] [INFO    ] discord.player: ffmpeg process 38072 should have terminated with a return code of 1.
+[2024-10-13 22:55:51] [ERROR   ] discord.ext.commands.bot: Ignoring exception in command play
+Traceback (most recent call last):
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\ext\commands\core.py", line 235, in wrapped
+    ret = await coro(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\Downloads\Programming\Discord_bots\music_bot\music_cog.py", line 99, in play
+    await self.play_music(ctx)
+  File "C:\Users\alske\Downloads\Programming\Discord_bots\music_bot\music_cog.py", line 73, in play_music
+    self.vc.play(discord.FFmpegPCMAudio(song, executable= "ffmpeg.exe", **self.FFMPEG_OPTIONS), after=lambda e: asyncio.run_coroutine_threadsafe(self.play_next(), self.bot.loop))
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\voice_client.py", line 481, in play
+    raise ClientException('Already playing audio.')
+discord.errors.ClientException: Already playing audio.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\ext\commands\bot.py", line 1366, in invoke
+    await ctx.command.invoke(ctx)
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\ext\commands\core.py", line 1029, in invoke
+    await injected(*ctx.args, **ctx.kwargs)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\ext\commands\core.py", line 244, in wrapped
+    raise CommandInvokeError(exc) from exc
+discord.ext.commands.errors.CommandInvokeError: Command raised an exception: ClientException: Already playing audio.
+[2024-10-13 22:55:51] [INFO    ] discord.player: ffmpeg process 34424 has not terminated. Waiting to terminate...
+[2024-10-13 22:55:51] [INFO    ] discord.player: ffmpeg process 34424 should have terminated with a return code of 1.
+[2024-10-13 22:56:07] [INFO    ] discord.player: ffmpeg process 39452 has not terminated. Waiting to terminate...
+[2024-10-13 22:56:07] [INFO    ] discord.player: ffmpeg process 39452 should have terminated with a return code of 1.
+[2024-10-13 22:57:44] [INFO    ] discord.voice_state: The voice handshake is being terminated for Channel ID 1247415798826532935 (Guild ID 1074419036626096168)
+[2024-10-13 22:58:51] [INFO    ] discord.client: logging in using static token
+[2024-10-13 22:58:52] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 3eb32f75341d34e4cbd5eb23cb6b8785).
+[2024-10-13 22:59:24] [INFO    ] discord.voice_state: Connecting to voice...
+[2024-10-13 22:59:24] [INFO    ] discord.voice_state: Starting voice handshake... (connection attempt 1)
+[2024-10-13 22:59:24] [INFO    ] discord.voice_state: Voice handshake complete. Endpoint found: newark3500.discord.media
+[2024-10-13 22:59:24] [INFO    ] discord.voice_state: Voice connection complete.
+[2024-10-13 23:00:02] [ERROR   ] discord.ext.commands.bot: Ignoring exception in command skip
+Traceback (most recent call last):
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\ext\commands\core.py", line 235, in wrapped
+    ret = await coro(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\Downloads\Programming\Discord_bots\music_bot\music_cog.py", line 124, in skip
+    await self.play_next()
+  File "C:\Users\alske\Downloads\Programming\Discord_bots\music_bot\music_cog.py", line 48, in play_next
+    self.vc.play(discord.FFmpegPCMAudio(song, executable= "ffmpeg.exe", **self.FFMPEG_OPTIONS), after=lambda e: asyncio.run_coroutine_threadsafe(self.play_next(), self.bot.loop))
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\voice_client.py", line 481, in play
+    raise ClientException('Already playing audio.')
+discord.errors.ClientException: Already playing audio.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\ext\commands\bot.py", line 1366, in invoke
+    await ctx.command.invoke(ctx)
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\ext\commands\core.py", line 1029, in invoke
+    await injected(*ctx.args, **ctx.kwargs)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\ext\commands\core.py", line 244, in wrapped
+    raise CommandInvokeError(exc) from exc
+discord.ext.commands.errors.CommandInvokeError: Command raised an exception: ClientException: Already playing audio.
+[2024-10-13 23:00:02] [INFO    ] discord.player: ffmpeg process 38804 has not terminated. Waiting to terminate...
+[2024-10-13 23:00:02] [INFO    ] discord.player: ffmpeg process 38804 should have terminated with a return code of 1.
+[2024-10-13 23:00:10] [ERROR   ] discord.ext.commands.bot: Ignoring exception in command skip
+Traceback (most recent call last):
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\ext\commands\core.py", line 235, in wrapped
+    ret = await coro(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\Downloads\Programming\Discord_bots\music_bot\music_cog.py", line 124, in skip
+    await self.play_next()
+  File "C:\Users\alske\Downloads\Programming\Discord_bots\music_bot\music_cog.py", line 48, in play_next
+    self.vc.play(discord.FFmpegPCMAudio(song, executable= "ffmpeg.exe", **self.FFMPEG_OPTIONS), after=lambda e: asyncio.run_coroutine_threadsafe(self.play_next(), self.bot.loop))
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\voice_client.py", line 481, in play
+    raise ClientException('Already playing audio.')
+discord.errors.ClientException: Already playing audio.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\ext\commands\bot.py", line 1366, in invoke
+    await ctx.command.invoke(ctx)
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\ext\commands\core.py", line 1029, in invoke
+    await injected(*ctx.args, **ctx.kwargs)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\ext\commands\core.py", line 244, in wrapped
+    raise CommandInvokeError(exc) from exc
+discord.ext.commands.errors.CommandInvokeError: Command raised an exception: ClientException: Already playing audio.
+[2024-10-13 23:00:10] [INFO    ] discord.player: ffmpeg process 31824 has not terminated. Waiting to terminate...
+[2024-10-13 23:00:10] [INFO    ] discord.player: ffmpeg process 31824 should have terminated with a return code of 1.
+[2024-10-13 23:04:36] [INFO    ] discord.player: ffmpeg process 23900 successfully terminated with return code of 0.
+[2024-10-13 23:05:49] [INFO    ] discord.voice_state: The voice handshake is being terminated for Channel ID 1247415798826532935 (Guild ID 1074419036626096168)
+[2024-10-13 23:05:58] [INFO    ] discord.client: logging in using static token
+[2024-10-13 23:06:00] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: f6f38d58a994310702d760cabf39d142).
+[2024-10-13 23:06:09] [INFO    ] discord.voice_state: Connecting to voice...
+[2024-10-13 23:06:09] [INFO    ] discord.voice_state: Starting voice handshake... (connection attempt 1)
+[2024-10-13 23:06:09] [INFO    ] discord.voice_state: Voice handshake complete. Endpoint found: newark3500.discord.media
+[2024-10-13 23:06:09] [INFO    ] discord.voice_state: Voice connection complete.
+[2024-10-13 23:06:36] [ERROR   ] discord.ext.commands.bot: Ignoring exception in command skip
+Traceback (most recent call last):
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\ext\commands\core.py", line 235, in wrapped
+    ret = await coro(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\Downloads\Programming\Discord_bots\music_bot\music_cog.py", line 124, in skip
+    await self.play_music(ctx)
+  File "C:\Users\alske\Downloads\Programming\Discord_bots\music_bot\music_cog.py", line 73, in play_music
+    self.vc.play(discord.FFmpegPCMAudio(song, executable= "ffmpeg.exe", **self.FFMPEG_OPTIONS), after=lambda e: asyncio.run_coroutine_threadsafe(self.play_next(), self.bot.loop))
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\voice_client.py", line 481, in play
+    raise ClientException('Already playing audio.')
+discord.errors.ClientException: Already playing audio.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\ext\commands\bot.py", line 1366, in invoke
+    await ctx.command.invoke(ctx)
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\ext\commands\core.py", line 1029, in invoke
+    await injected(*ctx.args, **ctx.kwargs)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\ext\commands\core.py", line 244, in wrapped
+    raise CommandInvokeError(exc) from exc
+discord.ext.commands.errors.CommandInvokeError: Command raised an exception: ClientException: Already playing audio.
+[2024-10-13 23:06:36] [INFO    ] discord.player: ffmpeg process 35720 has not terminated. Waiting to terminate...
+[2024-10-13 23:06:36] [INFO    ] discord.player: ffmpeg process 35720 should have terminated with a return code of 1.
+[2024-10-13 23:12:34] [INFO    ] discord.player: ffmpeg process 36416 successfully terminated with return code of 0.
+[2024-10-13 23:13:37] [INFO    ] discord.voice_state: The voice handshake is being terminated for Channel ID 1247415798826532935 (Guild ID 1074419036626096168)
+[2024-10-13 23:13:37] [INFO    ] discord.player: ffmpeg process 34940 has not terminated. Waiting to terminate...
+[2024-10-13 23:13:37] [INFO    ] discord.player: ffmpeg process 34940 should have terminated with a return code of 1.
+[2024-10-13 23:13:38] [INFO    ] discord.player: ffmpeg process 31760 has not terminated. Waiting to terminate...
+[2024-10-13 23:13:38] [INFO    ] discord.player: ffmpeg process 31760 should have terminated with a return code of 1.
+[2024-10-13 23:14:04] [INFO    ] discord.client: logging in using static token
+[2024-10-13 23:14:05] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: e2cb36d1a18267b7b28db0007d0e0e15).
+[2024-10-13 23:14:15] [INFO    ] discord.voice_state: Connecting to voice...
+[2024-10-13 23:14:15] [INFO    ] discord.voice_state: Starting voice handshake... (connection attempt 1)
+[2024-10-13 23:14:15] [INFO    ] discord.voice_state: Voice handshake complete. Endpoint found: newark3500.discord.media
+[2024-10-13 23:14:15] [INFO    ] discord.voice_state: Voice connection complete.
+[2024-10-13 23:14:30] [INFO    ] discord.player: ffmpeg process 21628 has not terminated. Waiting to terminate...
+[2024-10-13 23:14:30] [INFO    ] discord.player: ffmpeg process 21628 should have terminated with a return code of 1.
+[2024-10-13 23:14:32] [ERROR   ] discord.ext.commands.bot: Ignoring exception in command skip
+Traceback (most recent call last):
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\ext\commands\core.py", line 235, in wrapped
+    ret = await coro(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\Downloads\Programming\Discord_bots\music_bot\music_cog.py", line 124, in skip
+    await self.play_music(ctx)
+  File "C:\Users\alske\Downloads\Programming\Discord_bots\music_bot\music_cog.py", line 73, in play_music
+    self.vc.play(discord.FFmpegPCMAudio(song, executable= "ffmpeg.exe", **self.FFMPEG_OPTIONS), after=lambda e: asyncio.run_coroutine_threadsafe(self.play_next(), self.bot.loop))
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\voice_client.py", line 481, in play
+    raise ClientException('Already playing audio.')
+discord.errors.ClientException: Already playing audio.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\ext\commands\bot.py", line 1366, in invoke
+    await ctx.command.invoke(ctx)
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\ext\commands\core.py", line 1029, in invoke
+    await injected(*ctx.args, **ctx.kwargs)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\ext\commands\core.py", line 244, in wrapped
+    raise CommandInvokeError(exc) from exc
+discord.ext.commands.errors.CommandInvokeError: Command raised an exception: ClientException: Already playing audio.
+[2024-10-13 23:14:32] [INFO    ] discord.player: ffmpeg process 38884 has not terminated. Waiting to terminate...
+[2024-10-13 23:14:32] [INFO    ] discord.player: ffmpeg process 38884 should have terminated with a return code of 1.
+[2024-10-13 23:16:30] [INFO    ] discord.player: ffmpeg process 22064 successfully terminated with return code of 0.
+[2024-10-13 23:17:17] [INFO    ] discord.voice_state: The voice handshake is being terminated for Channel ID 1247415798826532935 (Guild ID 1074419036626096168)
+[2024-10-13 23:17:17] [INFO    ] discord.player: ffmpeg process 19708 has not terminated. Waiting to terminate...
+[2024-10-13 23:17:17] [INFO    ] discord.player: ffmpeg process 19708 should have terminated with a return code of 1.
+[2024-10-13 23:17:24] [INFO    ] discord.client: logging in using static token
+[2024-10-13 23:17:25] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 3ef413be57524a81a9184c19cab2ae0d).
+[2024-10-13 23:17:32] [INFO    ] discord.voice_state: Connecting to voice...
+[2024-10-13 23:17:32] [INFO    ] discord.voice_state: Starting voice handshake... (connection attempt 1)
+[2024-10-13 23:17:32] [INFO    ] discord.voice_state: Voice handshake complete. Endpoint found: newark3500.discord.media
+[2024-10-13 23:17:33] [INFO    ] discord.voice_state: Voice connection complete.
+[2024-10-13 23:19:31] [INFO    ] discord.player: ffmpeg process 15896 has not terminated. Waiting to terminate...
+[2024-10-13 23:19:31] [INFO    ] discord.player: ffmpeg process 15896 should have terminated with a return code of 1.
+[2024-10-13 23:20:27] [ERROR   ] discord.ext.commands.bot: Ignoring exception in command play
+Traceback (most recent call last):
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\ext\commands\core.py", line 235, in wrapped
+    ret = await coro(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\Downloads\Programming\Discord_bots\music_bot\music_cog.py", line 89, in play
+    song = self.search_yt(query)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\Downloads\Programming\Discord_bots\music_bot\music_cog.py", line 33, in search_yt
+    search = VideosSearch(item, limit=1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\youtubesearchpython\search.py", line 149, in __init__
+    self._getComponents(*self.searchMode)
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\youtubesearchpython\core\search.py", line 114, in _getComponents
+    self.resultComponents.append(self._getVideoComponent(element))
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\youtubesearchpython\handlers\componenthandler.py", line 32, in _getVideoComponent
+    component['channel']['link'] = 'https://www.youtube.com/channel/' + component['channel']['id']
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+TypeError: can only concatenate str (not "NoneType") to str
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\ext\commands\bot.py", line 1366, in invoke
+    await ctx.command.invoke(ctx)
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\ext\commands\core.py", line 1029, in invoke
+    await injected(*ctx.args, **ctx.kwargs)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alske\AppData\Local\Programs\Python\Python312\Lib\site-packages\discord\ext\commands\core.py", line 244, in wrapped
+    raise CommandInvokeError(exc) from exc
+discord.ext.commands.errors.CommandInvokeError: Command raised an exception: TypeError: can only concatenate str (not "NoneType") to str
+[2024-10-13 23:28:56] [INFO    ] discord.player: ffmpeg process 31448 has not terminated. Waiting to terminate...
+[2024-10-13 23:28:56] [INFO    ] discord.player: ffmpeg process 31448 should have terminated with a return code of 1.
+[2024-10-13 23:29:05] [INFO    ] discord.player: ffmpeg process 5528 has not terminated. Waiting to terminate...
+[2024-10-13 23:29:05] [INFO    ] discord.player: ffmpeg process 5528 should have terminated with a return code of 1.
+[2024-10-13 23:29:12] [INFO    ] discord.voice_state: The voice handshake is being terminated for Channel ID 1247415798826532935 (Guild ID 1074419036626096168)
+[2024-10-13 23:29:20] [INFO    ] discord.voice_state: Connecting to voice...
+[2024-10-13 23:29:20] [INFO    ] discord.voice_state: Starting voice handshake... (connection attempt 1)
+[2024-10-13 23:29:21] [INFO    ] discord.voice_state: Voice handshake complete. Endpoint found: newark3500.discord.media
+[2024-10-13 23:29:21] [INFO    ] discord.voice_state: Voice connection complete.
+[2024-10-13 23:39:02] [INFO    ] discord.voice_state: The voice handshake is being terminated for Channel ID 1247415798826532935 (Guild ID 1074419036626096168)
+[2024-10-13 23:39:02] [INFO    ] discord.player: ffmpeg process 36856 has not terminated. Waiting to terminate...
+[2024-10-13 23:39:02] [INFO    ] discord.player: ffmpeg process 36856 should have terminated with a return code of 1.
+[2024-10-13 23:39:08] [INFO    ] discord.voice_state: Connecting to voice...
+[2024-10-13 23:39:08] [INFO    ] discord.voice_state: Starting voice handshake... (connection attempt 1)
+[2024-10-13 23:39:08] [INFO    ] discord.voice_state: Voice handshake complete. Endpoint found: newark3500.discord.media
+[2024-10-13 23:39:08] [INFO    ] discord.voice_state: Voice connection complete.
+[2024-10-13 23:51:31] [INFO    ] discord.player: ffmpeg process 41096 successfully terminated with return code of 0.

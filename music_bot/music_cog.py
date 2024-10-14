@@ -25,7 +25,7 @@ class music_cog(commands.Cog):
         self.vc = None
         self.ytdl = YoutubeDL(self.YDL_OPTIONS)
 
-     #searching the item on youtube
+    #searching the item on youtube
     def search_yt(self, item):
         if item.startswith("https://"):
             title = self.ytdl.extract_info(item, download=False)["title"]
@@ -120,8 +120,10 @@ class music_cog(commands.Cog):
     async def skip(self, ctx):
         if self.vc != None and self.vc:
             self.vc.stop()
+
             #try to play next in the queue if it exists
-            await self.play_music(ctx)
+            # this is redundant! See the reply at https://stackoverflow.com/questions/73405668/discord-music-bot-when-i-skip-a-track-the-bot-skips-2-tracks-at-once
+            #await self.play_music(ctx)
 
 
     @commands.command(name="queue", aliases=["q"], help="Displays the current songs in queue")
