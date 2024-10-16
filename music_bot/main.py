@@ -15,6 +15,8 @@ bot = commands.Bot(command_prefix="$", intents=intents)
 
 bot.remove_command("help")
 
+with open('../token.txt', 'r') as file:
+    TOKEN = file.read().strip()
 
 async def main():
 
@@ -35,6 +37,6 @@ async def main():
     async with bot:
         await bot.add_cog(help_cog(bot))
         await bot.add_cog(music_cog(bot))
-        await bot.start(os.getenv('TOKEN'))
+        await bot.start(TOKEN)
 
 asyncio.run(main())

@@ -25,7 +25,7 @@ class music_cog(commands.Cog):
 
         self.vc = None
         self.ytdl = YoutubeDL(self.YDL_OPTIONS)
-        self.client = discord.Client()
+        self.client = discord.Client(intents=discord.Intents.default())
 
     #searching the item on youtube
     def search_yt(self, item):
@@ -75,7 +75,7 @@ class music_cog(commands.Cog):
             self.vc.play(discord.FFmpegPCMAudio(song, executable= "ffmpeg", **self.FFMPEG_OPTIONS), after=lambda e: asyncio.run_coroutine_threadsafe(self.play_next(), self.bot.loop))
 
             # Start monitoring the voice channel
-            self.client.loop.create_task(self.check_if_empty(ctx))
+            await self.check_if_empty(ctx)
         else:
             self.is_playing = False
 
@@ -86,10 +86,10 @@ class music_cog(commands.Cog):
             return
 
         while True:
-            voice_channel = ctx.author.voice.channel
+            voice_channel = self.vc.channel
             # Check if the bot is the only member in the channel
             if (len(voice_channel.members) == 1 and voice_channel.members[0] == self.bot.user) or not(self.is_playing):
-                await asyncio.sleep(30)  # Wait for 60 seconds
+                await asyncio.sleep(60)  # Wait for 60 seconds
                 # Check again if it's still alone
                 if (len(voice_channel.members) == 1 and voice_channel.members[0] == self.bot.user) or not(self.is_playing):
                     await ctx.send("```Leaving channel due to inactivity.```")
