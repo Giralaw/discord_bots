@@ -45,7 +45,7 @@ class music_cog(commands.Cog):
             loop = asyncio.get_event_loop()
             data = await loop.run_in_executor(None, lambda: self.ytdl.extract_info(m_url, download=False))
             song = data['url']
-            self.vc.play(discord.FFmpegPCMAudio(song, executable= "ffmpeg.exe", **self.FFMPEG_OPTIONS), after=lambda e: asyncio.run_coroutine_threadsafe(self.play_next(), self.bot.loop))
+            self.vc.play(discord.FFmpegPCMAudio(song, executable= "ffmpeg", **self.FFMPEG_OPTIONS), after=lambda e: asyncio.run_coroutine_threadsafe(self.play_next(), self.bot.loop))
         else:
             self.is_playing = False
 
@@ -70,10 +70,31 @@ class music_cog(commands.Cog):
             loop = asyncio.get_event_loop()
             data = await loop.run_in_executor(None, lambda: self.ytdl.extract_info(m_url, download=False))
             song = data['url']
-            self.vc.play(discord.FFmpegPCMAudio(song, executable= "ffmpeg.exe", **self.FFMPEG_OPTIONS), after=lambda e: asyncio.run_coroutine_threadsafe(self.play_next(), self.bot.loop))
+            self.vc.play(discord.FFmpegPCMAudio(song, executable= "ffmpeg", **self.FFMPEG_OPTIONS), after=lambda e: asyncio.run_coroutine_threadsafe(self.play_next(), self.bot.loop))
 
+            # Start monitoring the voice channel
+            self.loop.create_task(self.check_if_empty(ctx))
         else:
             self.is_playing = False
+
+    #automatically disconnect if no one else is in VC for 60 seconds
+    async def check_if_empty(self, ctx):
+        """Monitor the voice channel and leave if empty for 60 seconds."""
+        if self.vc == None or not self.vc.is_connected():
+            return
+
+        while True:
+            voice_channel = ctx.author.voice.channel
+            # Check if the bot is the only member in the channel
+            if (len(voice_channel.members) == 1 and voice_channel.members[0] == self.bot.user) or not(self.is_playing):
+                await asyncio.sleep(30)  # Wait for 60 seconds
+                # Check again if it's still alone
+                if (len(voice_channel.members) == 1 and voice_channel.members[0] == self.bot.user) or not(self.is_playing):
+                    await ctx.send("```Leaving channel due to inactivity.```")
+                    await self.vc.disconnect()
+                    break
+            await asyncio.sleep(10)  # Check every 10 seconds
+
 
     @commands.command(name="play", aliases=["p","playing"], help="Plays a selected song from youtube")
     async def play(self, ctx, *args):
