@@ -7,6 +7,9 @@ import asyncio
 
 class music_cog(commands.Cog):
 
+    #add client for loop event of disconnect-checking
+
+
     def __init__(self, bot):
         self.bot = bot
     
@@ -24,6 +27,7 @@ class music_cog(commands.Cog):
 
         self.vc = None
         self.ytdl = YoutubeDL(self.YDL_OPTIONS)
+        self.client = discord.Client()
 
     #searching the item on youtube
     def search_yt(self, item):
@@ -73,7 +77,7 @@ class music_cog(commands.Cog):
             self.vc.play(discord.FFmpegPCMAudio(song, executable= "ffmpeg", **self.FFMPEG_OPTIONS), after=lambda e: asyncio.run_coroutine_threadsafe(self.play_next(), self.bot.loop))
 
             # Start monitoring the voice channel
-            self.loop.create_task(self.check_if_empty(ctx))
+            self.client.loop.create_task(self.check_if_empty(ctx))
         else:
             self.is_playing = False
 
