@@ -25,7 +25,6 @@ class music_cog(commands.Cog):
 
         self.vc = None
         self.ytdl = YoutubeDL(self.YDL_OPTIONS)
-        self.client = discord.Client(intents=discord.Intents.default())
 
     #searching the item on youtube
     def search_yt(self, item):
