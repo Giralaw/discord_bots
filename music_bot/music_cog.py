@@ -7,8 +7,6 @@ import asyncio
 
 class music_cog(commands.Cog):
 
-    #add client for loop event of disconnect-checking
-
 
     def __init__(self, bot):
         self.bot = bot
