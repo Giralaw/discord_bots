@@ -5,6 +5,9 @@ from youtubesearchpython import VideosSearch
 from yt_dlp import YoutubeDL
 import asyncio
 
+ytdl_format_options = {}
+
+
 class music_cog(commands.Cog):
 
 
@@ -17,7 +20,7 @@ class music_cog(commands.Cog):
 
         # 2d array containing [song, channel]
         self.music_queue = []
-        self.YDL_OPTIONS = {'format': 'bestaudio/best'}
+        self.YDL_OPTIONS = {'format': 'bestaudio/best', 'cookiefile': '~/.cookies.txt'}
         self.FFMPEG_OPTIONS = {
         'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5',
         'options': '-vn',
@@ -88,7 +91,7 @@ class music_cog(commands.Cog):
             voice_channel = self.vc.channel
             # Check if the bot is the only member in the channel
             if (len(voice_channel.members) == 1 and voice_channel.members[0] == self.bot.user) or not(self.is_playing):
-                await asyncio.sleep(60)  # Wait for 60 seconds
+                await asyncio.sleep(180)  # Wait for 180 seconds
                 # Check again if it's still alone
                 if (len(voice_channel.members) == 1 and voice_channel.members[0] == self.bot.user) or not(self.is_playing):
                     await ctx.send("```Leaving channel due to inactivity.```")
@@ -98,8 +101,11 @@ class music_cog(commands.Cog):
 
 
     @commands.command(name="play", aliases=["p","playing"], help="Plays a selected song from youtube")
-    async def play(self, ctx, *args):
-        query = " ".join(args)
+    async def play(self, ctx, *, args=None):
+        print("did the error throw by this point")
+        query = " ".join({args})
+        
+        print("your search query was:", query)
         try:
             voice_channel = ctx.author.voice.channel
         except:
