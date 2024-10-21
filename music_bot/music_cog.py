@@ -17,6 +17,10 @@ class music_cog(commands.Cog):
         #all the music related stuff
         self.is_playing = False
         self.is_paused = False
+        
+        # adding attribute to store the current song being played
+        # since i'm not sure if it's stored anywhere else after leaving the queue
+        self.current = None
 
         # 2d array containing [song, channel]
         self.music_queue = []
@@ -45,7 +49,7 @@ class music_cog(commands.Cog):
             m_url = self.music_queue[0][0]['source']
 
             #remove the first element as you are currently playing it
-            self.music_queue.pop(0)
+            self.current = self.music_queue.pop(0)[0]['title']  
             loop = asyncio.get_event_loop()
             data = await loop.run_in_executor(None, lambda: self.ytdl.extract_info(m_url, download=False))
             song = data['url']
@@ -70,7 +74,7 @@ class music_cog(commands.Cog):
             else:
                 await self.vc.move_to(self.music_queue[0][1])
             #remove the first element as you are currently playing it
-            self.music_queue.pop(0)
+            self.current = self.music_queue.pop(0)[0]['title']
             loop = asyncio.get_event_loop()
             data = await loop.run_in_executor(None, lambda: self.ytdl.extract_info(m_url, download=False))
             song = data['url']
@@ -102,7 +106,6 @@ class music_cog(commands.Cog):
 
     @commands.command(name="play", aliases=["p","playing"], help="Plays a selected song from youtube")
     async def play(self, ctx, *, args=None):
-        print("did the error throw by this point")
         query = " ".join({args})
         
         print("your search query was:", query)
@@ -147,6 +150,7 @@ class music_cog(commands.Cog):
     @commands.command(name="skip", aliases=["s"], help="Skips the current song being played")
     async def skip(self, ctx):
         if self.vc != None and self.vc:
+            await ctx.send(f"**'{self.current}'** skipped")
             self.vc.stop()
 
             #try to play next in the queue if it exists
