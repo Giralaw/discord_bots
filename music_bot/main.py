@@ -21,6 +21,7 @@ bot.remove_command("help")
 current_dir = Path(__file__).parent
 token_file_path = current_dir / '../token.txt'
 
+log_file_path = current_dir/ 'discord.log'
 with open(token_file_path, 'r') as file:
     TOKEN = file.read().strip()
 
@@ -30,7 +31,7 @@ async def main():
     logger.setLevel(logging.INFO)
 
     handler = logging.handlers.RotatingFileHandler(
-        filename='discord.log',
+        filename=log_file_path,
         encoding='utf-8',
         maxBytes=32 * 1024 * 1024,  # 32 MiB
         backupCount=5,  # Rotate through 5 files
