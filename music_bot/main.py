@@ -3,6 +3,8 @@ from discord.ext import commands
 import os, asyncio
 import logging
 import logging.handlers
+from pathlib import Path
+
 
 from help_cog import help_cog
 from music_cog import music_cog
@@ -15,7 +17,11 @@ bot = commands.Bot(command_prefix="$", intents=intents)
 
 bot.remove_command("help")
 
-with open('../token.txt', 'r') as file:
+# Use Path to get current script's directory
+current_dir = Path(__file__).parent
+token_file_path = current_dir / '../token.txt'
+
+with open(token_file_path, 'r') as file:
     TOKEN = file.read().strip()
 
 async def main():

@@ -53,6 +53,7 @@ class music_cog(commands.Cog):
             loop = asyncio.get_event_loop()
             data = await loop.run_in_executor(None, lambda: self.ytdl.extract_info(m_url, download=False))
             song = data['url']
+
             self.vc.play(discord.FFmpegPCMAudio(song, executable= "ffmpeg", **self.FFMPEG_OPTIONS), after=lambda e: asyncio.run_coroutine_threadsafe(self.play_next(), self.bot.loop))
         else:
             self.is_playing = False
@@ -78,6 +79,8 @@ class music_cog(commands.Cog):
             loop = asyncio.get_event_loop()
             data = await loop.run_in_executor(None, lambda: self.ytdl.extract_info(m_url, download=False))
             song = data['url']
+           
+
             self.vc.play(discord.FFmpegPCMAudio(song, executable= "ffmpeg", **self.FFMPEG_OPTIONS), after=lambda e: asyncio.run_coroutine_threadsafe(self.play_next(), self.bot.loop))
 
             # Start monitoring the voice channel
@@ -95,7 +98,7 @@ class music_cog(commands.Cog):
             voice_channel = self.vc.channel
             # Check if the bot is the only member in the channel
             if (len(voice_channel.members) == 1 and voice_channel.members[0] == self.bot.user) or not(self.is_playing):
-                await asyncio.sleep(180)  # Wait for 180 seconds
+                await asyncio.sleep(600)  # Wait for 10 minutes
                 # Check again if it's still alone
                 if (len(voice_channel.members) == 1 and voice_channel.members[0] == self.bot.user) or not(self.is_playing):
                     await ctx.send("```Leaving channel due to inactivity.```")

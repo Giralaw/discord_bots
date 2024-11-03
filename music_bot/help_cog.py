@@ -14,7 +14,7 @@ class help_cog(commands.Cog):
 General commands:
 {self.bot.command_prefix}help - display all the available commands
 {self.bot.command_prefix}q - display the current music queue
-{self.bot.command_prefix}p <keywords> - find the song on youtube and plays it in your current channel. Will resume playing the current song if it was paused
+{self.bot.command_prefix}p <keywords> - find the song on youtube and play it in your current channel. Will resume playing the current song if it was paused
 {self.bot.command_prefix}skip - skip the current song being played
 {self.bot.command_prefix}clear - Stop the music and clears the queue
 {self.bot.command_prefix}stop - Disconnect the bot from the voice channel
